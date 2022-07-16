@@ -3197,7 +3197,7 @@ const options_1 = __webpack_require__(538);
 const requestUtils_1 = __webpack_require__(899);
 const versionSalt = '1.0';
 function getCacheApiUrl(resource) {
-    const baseUrl = process.env['ACTIONS_CACHE_URL'] || '';
+    const baseUrl = process.env['LOCAL_ACTIONS_CACHE_URL'] || process.env['ACTIONS_CACHE_URL'] || '';
     if (!baseUrl) {
         throw new Error('Cache Service Url not found, unable to restore cache.');
     }
@@ -46910,7 +46910,7 @@ function checkKey(key) {
  * @returns boolean return true if Actions cache service feature is available, otherwise false
  */
 function isFeatureAvailable() {
-    return !!process.env['ACTIONS_CACHE_URL'];
+    return !!(process.env['ACTIONS_CACHE_URL'] || process.env['LOCAL_ACTIONS_CACHE_URL']);
 }
 exports.isFeatureAvailable = isFeatureAvailable;
 /**
